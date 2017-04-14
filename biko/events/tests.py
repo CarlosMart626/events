@@ -15,7 +15,11 @@ class TestRecurrentEvents(TestCase):
             date=date(2017, 4, 7)
         )
         event.create_recurrent_events()
-        self.assertEqual(event.get_repetitions().count(), 8)
+        self.assertEqual(event.get_repetitions.count(), 8)
+        print("BEGIN\n")
+        print(event.date)
+        for event in event.get_repetitions:
+            print(event.date)
 
     def test_number_events_created(self):
         event = Event.objects.create(
@@ -23,8 +27,8 @@ class TestRecurrentEvents(TestCase):
             date=date(2017, 11, 07)
         )
         event.create_recurrent_events()
-        self.assertEqual(event.get_repetitions().count(), 8)
+        self.assertEqual(event.get_repetitions.count(), 8)
         print("BEGIN\n")
         print(event.date)
-        for event in event.get_repetitions():
+        for event in event.get_repetitions:
             print(event.date)
