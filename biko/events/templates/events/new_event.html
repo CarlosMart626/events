@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block extra-css %}
+<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<h2>Create new event</h2>
+<form class="ui form" action="" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.name.label }}
+    {{ form.name.errors }}
+    <div class="ui field calendar {% if form.name.errors %}error{% endif %}">
+    {{ form.name }}
+    </div>
+    {{ form.date.label }}
+    {{ form.date.errors }}
+    <div class="ui field calendar {% if form.date.errors %}error{% endif %}" id="{{ form.date.auto_id }}">
+        <div class="ui input left icon ">
+          <i class="calendar icon"></i>
+          {{ form.date }}
+        </div>
+    </div>
+    <button type="submit" class="ui labeled icon button teal">
+        <i class="add icon"></i>
+        New Event
+    </button>
+</form>
+{% endblock %}
+
+{% block extra-js %}
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.js"></script>
+<script type="text/javascript">
+$('#id_date').calendar({
+  type: 'date',
+  monthFirst: false,
+  formatter: {
+    date: function (date, settings) {
+      if (!date) return '';
+      var day = date.getDate();
+      var month = ("0" + (date.getMonth() + 1)).slice(-2);
+      var year = date.getFullYear();
+      return year + '-' + month + '-' + day;
+    }
+  }
+});
+</script>
+{% endblock %}

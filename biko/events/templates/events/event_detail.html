@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{%block content%}
+<h2>Event: {{ object.name }}</h2>
+<h4>Date: {{ object.date }}</h4>
+<div class="ui divider"></div>
+<table class="ui celled striped table">
+    <thead>
+        <tr><th>
+            Repetition Events</th>
+        </tr>
+        <tr>
+            <th>
+                Date
+            </th>
+        </tr>
+    </thead>
+  <tbody>
+      {% for event in object.get_repetitions %}
+      <tr>
+        <td>
+            <i class="calendar icon"></i>
+            {{event.date}}
+        </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{%endblock%}
